@@ -56,6 +56,7 @@ app.post('/',(req, res)=>{
 app.get('/',(req, res)=> {
     if(req.session.login){
         res.render('logado');
+        console.log("meu user é:" + req.session.login)    
     }else {
         req.render('index');
     }
@@ -65,9 +66,11 @@ app.post('/', (res, req)=>{
     if(req.body.password == password && req.body.login == login) {
         // logado com sucesso
         req.session.login = login;
-        res.redirect('/');
+        res.render('ligado');
+    }else {
+        res.render('index');
     }
-    res.render('index')
+  
 })
 
 
